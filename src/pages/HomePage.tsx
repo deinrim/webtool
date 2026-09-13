@@ -75,6 +75,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearch }) 
                 <div className="mt-2.5 flex items-center flex-wrap gap-1.5 text-xs text-slate-500">
                   <span className="font-semibold text-slate-400 text-[11px]">Popular:</span>
                   {[
+                    { name: 'Video Downloader', slug: 'video-downloader' },
                     { name: 'Image Compressor', slug: 'image-compressor' },
                     { name: 'PDF Merge', slug: 'pdf-merge' },
                     { name: 'ROAS Calculator', slug: 'roas-calculator' },

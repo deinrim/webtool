@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ToolDefinition } from '../../types';
+import { VideoDownloader } from './VideoDownloader';
 import {
   ImageCompressor,
   ImageResizer,
@@ -147,6 +148,20 @@ export const ToolRenderer: React.FC<ToolRendererProps> = ({ tool }) => {
       return <HashtagGenerator />;
     case 'social-media-counter':
       return <SocialMediaCounter />;
+
+    // Social Media & Video Downloaders
+    case 'video-downloader':
+      return <VideoDownloader initialPlatform="all" />;
+    case 'youtube-downloader':
+      return <VideoDownloader initialPlatform="youtube" />;
+    case 'facebook-video-downloader':
+      return <VideoDownloader initialPlatform="facebook" />;
+    case 'instagram-video-downloader':
+      return <VideoDownloader initialPlatform="instagram" />;
+    case 'tiktok-downloader':
+      return <VideoDownloader initialPlatform="tiktok" />;
+    case 'twitter-video-downloader':
+      return <VideoDownloader initialPlatform="twitter" />;
 
     // Dev & Utilities
     case 'qr-code-generator':

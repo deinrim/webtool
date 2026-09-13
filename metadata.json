@@ -1,6 +1,6 @@
 {
   "name": "OmniTools - 50+ Powerful Online Tools",
-  "description": "All-in-one free online tools platform for PDF, images, SEO, PPC, digital marketing, developer utilities, and productivity.",
+  "description": "All-in-one free online tools platform for video downloads, PDF, images, SEO, PPC, digital marketing, developer utilities, and productivity.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

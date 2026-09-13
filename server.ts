@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import { dbStore } from './server/database';
+import { handleGetVideoInfo, handleStreamVideoDownload } from './server/videoDownloader';
 
 async function startServer() {
   const app = express();
@@ -67,7 +68,8 @@ Sitemap: https://${req.get('host') || 'omnitools.example.com'}/sitemap.xml
       'utm-builder', 'marketing-roi', 'email-subject-tester', 'hashtag-generator',
       'social-media-counter', 'qr-code-generator', 'password-generator', 'color-picker',
       'url-encoder-decoder', 'json-formatter', 'base64-tool', 'timestamp-converter',
-      'percentage-calculator', 'age-calculator', 'gpa-calculator', 'markdown-previewer'
+      'percentage-calculator', 'age-calculator', 'gpa-calculator', 'markdown-previewer',
+      'video-downloader', 'youtube-downloader', 'facebook-video-downloader', 'instagram-video-downloader', 'tiktok-downloader', 'twitter-video-downloader'
     ];
     const categorySlugs = ['image', 'pdf', 'seo', 'ppc', 'marketing', 'text', 'document', 'website', 'social-media', 'developer', 'business', 'productivity', 'education', 'utility'];
 
@@ -245,6 +247,10 @@ Sitemap: https://${req.get('host') || 'omnitools.example.com'}/sitemap.xml
     });
     res.json({ success: true, message: 'Thank you for your feedback!' });
   });
+
+  // Video Downloader endpoints
+  app.get('/api/v1/video/info', handleGetVideoInfo);
+  app.get('/api/v1/video/stream', handleStreamVideoDownload);
 
   // Admin settings endpoints
   app.get('/api/v1/admin/settings', (req, res) => {

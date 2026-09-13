@@ -13,7 +13,8 @@ import {
   QrCode, 
   Code, 
   Sliders,
-  Maximize2
+  Maximize2,
+  Video
 } from 'lucide-react';
 
 interface HeroSliderProps {
@@ -104,6 +105,56 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
               <span className="bg-blue-600/30 text-blue-300 px-2 py-0.5 rounded text-[10px] font-medium border border-blue-500/40">
                 Instant Download Ready
               </span>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: 'video-downloader',
+      name: 'Universal Video Downloader',
+      slug: 'video-downloader',
+      category: 'Social Media Suite',
+      badge: 'Brand New',
+      tagline: 'Download YouTube, Facebook, Instagram & TikTok in Full HD & MP3',
+      description: 'Save reels, shorts, stories, and videos in 1080p, 720p, or extract 320 kbps studio MP3 audio without watermarks or software.',
+      highlights: ['YouTube, FB, IG, TikTok, X', '1080p Full HD MP4', '320 kbps MP3 audio extract', 'Direct mobile QR code transfer'],
+      metric: { label: 'Supported Platforms', value: '40+ Sites' },
+      accentColor: 'from-red-600 via-purple-600 to-pink-500',
+      bgGradient: 'from-red-500/10 via-purple-500/5 to-transparent',
+      icon: Video,
+      renderPreview: () => (
+        <div className="bg-slate-900 rounded-xl p-4 text-white font-sans border border-slate-800 shadow-inner">
+          <div className="flex items-center justify-between text-xs text-slate-400 mb-2.5 pb-2 border-b border-slate-800">
+            <span className="flex items-center gap-1.5 font-medium text-slate-300">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+              Universal Media Stream Parser
+            </span>
+            <span className="text-emerald-400 text-[11px] font-mono font-medium">1080p Ready</span>
+          </div>
+
+          <div className="flex items-center gap-3 p-2.5 rounded-lg bg-slate-950 border border-slate-800/80 mb-2.5">
+            <div className="w-12 h-10 rounded-md bg-gradient-to-tr from-purple-700 to-red-600 flex items-center justify-center shrink-0 text-white font-bold text-xs">
+              HD
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold truncate text-slate-100">Cinematic Reel / Video Stream</div>
+              <div className="text-[10px] text-slate-400 flex items-center gap-2 mt-0.5">
+                <span className="text-red-400 font-semibold">YouTube / IG / TikTok</span>
+                <span>•</span>
+                <span>03:45</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 text-[11px]">
+            <div className="p-2 rounded-lg bg-blue-950/40 border border-blue-800/40 flex items-center justify-between">
+              <span className="text-blue-300 font-semibold">MP4 1080p</span>
+              <span className="text-emerald-400 font-mono text-[10px]">42 MB</span>
+            </div>
+            <div className="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/40 flex items-center justify-between">
+              <span className="text-emerald-300 font-semibold">MP3 320k</span>
+              <span className="text-emerald-400 font-mono text-[10px]">8.4 MB</span>
             </div>
           </div>
         </div>
