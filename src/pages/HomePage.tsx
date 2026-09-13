@@ -5,6 +5,7 @@ import { ToolDefinition } from '../types';
 import { Icon } from '../components/common/Icon';
 import { useAuth } from '../context/AuthContext';
 import { AdBanner } from '../components/common/AdBanner';
+import { HeroSlider } from '../components/home/HeroSlider';
 
 interface HomePageProps {
   onNavigate: (route: string) => void;
@@ -30,59 +31,130 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenSearch }) 
 
   return (
     <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-6">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>54+ Free Online Utilities • Zero Installation • Client-Side Privacy</span>
-          </div>
+      {/* Hero Section - 2 Columns (Part 1: Content, Part 2: Slide Section with 6 Slides of Important Tools) */}
+      <section className="relative overflow-hidden pt-8 pb-12 sm:pt-12 sm:pb-16 border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900">
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:20px_20px]"></div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto leading-tight">
-            Every Online Tool You Need, <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              All in One Free Platform.
-            </span>
-          </h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            {/* Part 1: Content Section (Left 7 Cols) */}
+            <div className="lg:col-span-7 flex flex-col justify-center text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-4 w-fit">
+                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                <span>54+ Free Online Utilities • Zero Installation • 100% Client-Side Privacy</span>
+              </div>
 
-          <p className="mt-4 text-sm sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Compress images without losing quality, merge PDFs, build UTM parameters, calculate Google Ads ROAS, format code, and optimize SEO tags instantly.
-          </p>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.18]">
+                Fast, Private & Powerful Web Tools for{' '}
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                  Modern Digital Work.
+                </span>
+              </h1>
 
-          {/* Big Search Bar */}
-          <div className="mt-8 max-w-2xl mx-auto">
-            <div
-              onClick={onOpenSearch}
-              className="group flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 shadow-xl shadow-blue-500/5 hover:border-blue-500 transition cursor-pointer"
-            >
-              <Search className="w-5 h-5 text-slate-400 group-hover:text-blue-600 transition" />
-              <span className="text-sm text-slate-400 flex-1 text-left">
-                Type what you need (e.g. "Compress Image", "Merge PDF", "ROAS", "QR Code")...
-              </span>
-              <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-xs font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600">
-                ⌘K or /
-              </kbd>
+              <p className="mt-3.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
+                Compress media without losing quality, combine PDFs, calculate ROAS & PPC campaign metrics, test SEO meta tags, and format code. All computed right inside your browser with complete privacy.
+              </p>
+
+              {/* Search Bar Input Trigger */}
+              <div className="mt-6 max-w-xl">
+                <div
+                  id="hero-quick-search"
+                  onClick={onOpenSearch}
+                  className="group flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-white dark:bg-slate-800/90 border-2 border-slate-200 dark:border-slate-700 shadow-lg shadow-blue-500/5 hover:border-blue-500 transition cursor-pointer"
+                >
+                  <Search className="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition shrink-0" />
+                  <span className="text-xs sm:text-sm text-slate-400 flex-1 truncate">
+                    Search 54+ tools (e.g. "Compress Image", "Merge PDF", "ROAS", "QR Code")...
+                  </span>
+                  <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-[11px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 shrink-0">
+                    ⌘K or /
+                  </kbd>
+                </div>
+
+                {/* Quick Pills */}
+                <div className="mt-2.5 flex items-center flex-wrap gap-1.5 text-xs text-slate-500">
+                  <span className="font-semibold text-slate-400 text-[11px]">Popular:</span>
+                  {[
+                    { name: 'Image Compressor', slug: 'image-compressor' },
+                    { name: 'PDF Merge', slug: 'pdf-merge' },
+                    { name: 'ROAS Calculator', slug: 'roas-calculator' },
+                    { name: 'QR Code Studio', slug: 'qr-code-generator' },
+                    { name: 'UTM Builder', slug: 'utm-builder' },
+                    { name: 'JSON Formatter', slug: 'json-formatter' },
+                  ].map(item => (
+                    <button
+                      key={item.slug}
+                      id={`hero-quick-${item.slug}`}
+                      onClick={() => onNavigate(`/tools/${item.slug}`)}
+                      className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800/80 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600 dark:hover:text-blue-300 text-[11px] font-medium transition"
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Trust Indicators / Badges */}
+              <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800/80 grid grid-cols-3 gap-3 max-w-xl">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                    <Shield className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-slate-900 dark:text-white block">100% Private</span>
+                    <span className="text-[10px] text-slate-500 block leading-tight">No server uploads</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+                    <Zap className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-slate-900 dark:text-white block">Instant Speed</span>
+                    <span className="text-[10px] text-slate-500 block leading-tight">Zero waiting queue</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-slate-900 dark:text-white block">Free Forever</span>
+                    <span className="text-[10px] text-slate-500 block leading-tight">No account needed</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Quick Pills */}
-            <div className="mt-3 flex items-center justify-center flex-wrap gap-2 text-xs text-slate-500">
-              <span className="font-semibold text-slate-400">Popular:</span>
-              {[
-                { name: 'Image Compressor', slug: 'image-compressor' },
-                { name: 'PDF Merge', slug: 'pdf-merge' },
-                { name: 'ROAS Calculator', slug: 'roas-calculator' },
-                { name: 'QR Generator', slug: 'qr-code-generator' },
-                { name: 'UTM Builder', slug: 'utm-builder' },
-                { name: 'Word Counter', slug: 'word-counter' },
-              ].map(item => (
-                <button
-                  key={item.slug}
-                  onClick={() => onNavigate(`/tools/${item.slug}`)}
-                  className="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-600 transition"
-                >
-                  {item.name}
-                </button>
-              ))}
+            {/* Part 2: Slide Section with 6 Slides of Important Tools (Right 5 Cols) */}
+            <div className="lg:col-span-5 w-full">
+              <HeroSlider onNavigate={onNavigate} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Stats & Trust Bar */}
+      <section className="border-b border-slate-200 dark:border-slate-800 bg-slate-100/60 dark:bg-slate-900/60 py-3.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center divide-x-0 sm:divide-x divide-slate-200 dark:divide-slate-800">
+            <div>
+              <div className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white font-mono">54+</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Free Production Utilities</div>
+            </div>
+            <div>
+              <div className="text-base sm:text-lg font-extrabold text-emerald-600 dark:text-emerald-400 font-mono">0 Bytes</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Files Sent to Remote Servers</div>
+            </div>
+            <div>
+              <div className="text-base sm:text-lg font-extrabold text-blue-600 dark:text-blue-400 font-mono">Client-Side Engine</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">In-Browser Privacy & Speed</div>
+            </div>
+            <div>
+              <div className="text-base sm:text-lg font-extrabold text-indigo-600 dark:text-indigo-400 font-mono">100% Free</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">No Registration or Paywall</div>
             </div>
           </div>
         </div>
